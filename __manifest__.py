@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 {
-    "name": "Microsoft Outlook Token Notifier",
-    "version": "1.0",
+    "name": "BerpIA - Microsoft Outlook Token Notifier",
+    "version": "18.0.1.0.0",
+    "category": "BerpIA",
     "author": "Pedro Pereira Vaz",
     "website": "https://wavext.io",
-    "category": "Productivity/Discuss",
     "summary": "Notificaciones automáticas antes de que expire el client secret de Outlook",
     "description": """
         Notificador de Token de Microsoft Outlook
