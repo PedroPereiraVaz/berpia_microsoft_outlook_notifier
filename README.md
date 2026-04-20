@@ -128,7 +128,7 @@ El módulo sigue el patrón **"Scheduled Job"** de Odoo:
 ## Estructura de Archivos
 
 ```
-microsoft_outlook_notifier/
+berpia_microsoft_outlook_notifier/
 │
 ├── __init__.py                 # Inicializador del módulo
 ├── __manifest__.py             # Metadatos y configuración del módulo
@@ -268,35 +268,35 @@ def _cron_check_outlook_tokens(self):
 
 1. **Verificar límite diario:**
 
-   ```python
-   last_notif = Config.get_param('outlook_notifier_last_date', '')
-   if last_notif == today_str:
-       return  # Ya notificó hoy, salir
-   ```
+    ```python
+    last_notif = Config.get_param('outlook_notifier_last_date', '')
+    if last_notif == today_str:
+        return  # Ya notificó hoy, salir
+    ```
 
 2. **Verificar fecha de expiración manual:**
 
-   ```python
-   exp_str = Config.get_param('microsoft_outlook_secret_expiration', '')
-   if exp_str:
-       days_left = (exp_date - today).days
-       if days_left <= NOTIFY_DAYS_BEFORE:
-           notifications.append(...)  # Añadir alerta
-   ```
+    ```python
+    exp_str = Config.get_param('microsoft_outlook_secret_expiration', '')
+    if exp_str:
+        days_left = (exp_date - today).days
+        if days_left <= NOTIFY_DAYS_BEFORE:
+            notifications.append(...)  # Añadir alerta
+    ```
 
 3. **Validar tokens de servidores:**
 
-   ```python
-   token_errors = self._check_outlook_servers()
-   notifications.extend(token_errors)
-   ```
+    ```python
+    token_errors = self._check_outlook_servers()
+    notifications.extend(token_errors)
+    ```
 
 4. **Enviar notificaciones si hay alertas:**
-   ```python
-   if notifications:
-       self._send_notifications(notifications)
-       Config.set_param('outlook_notifier_last_date', today_str)
-   ```
+    ```python
+    if notifications:
+        self._send_notifications(notifications)
+        Config.set_param('outlook_notifier_last_date', today_str)
+    ```
 
 #### Método: `_check_outlook_servers(self)`
 
@@ -526,20 +526,19 @@ class OutlookSecretNotifier(models.AbstractModel):
 
 1. **Copiar el módulo:**
 
-   ```
-   Copiar carpeta microsoft_outlook_notifier/ a:
-   - addons/ (carpeta de addons personalizados)
-   - O cualquier carpeta en addons_path
-   ```
+    ```
+    Copiar carpeta berpia_microsoft_outlook_notifier/ a:
+    - addons/ (carpeta de addons personalizados)
+    - O cualquier carpeta en addons_path
+    ```
 
 2. **Actualizar lista de apps:**
-
-   - Ir a Apps
-   - Menú ⋮ → Update Apps List
+    - Ir a Apps
+    - Menú ⋮ → Update Apps List
 
 3. **Instalar:**
-   - Buscar "Microsoft Outlook Token Notifier"
-   - Click en Install
+    - Buscar "Microsoft Outlook Token Notifier"
+    - Click en Install
 
 ### Verificar Instalación
 
@@ -584,8 +583,8 @@ class OutlookSecretNotifier(models.AbstractModel):
 3. Eliminar o cambiar a fecha anterior
 4. Ejecutar cron manualmente
 5. Verificar:
-   - Email recibido
-   - Mensaje en Discuss → #general
+    - Email recibido
+    - Mensaje en Discuss → #general
 
 ### Test 3: Simular secret expirado
 
@@ -665,7 +664,7 @@ Verificar que sigan existiendo:
 ### Actualizar el módulo
 
 ```bash
-./odoo-bin -u microsoft_outlook_notifier -d tu_base_de_datos
+./odoo-bin -u berpia_microsoft_outlook_notifier -d tu_base_de_datos
 ```
 
 ---
